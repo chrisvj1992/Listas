@@ -1,10 +1,13 @@
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
+import uaslp.objetos.list.arraylist.Arraylist;
 import uaslp.objetos.list.linkedlist.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        List datos = new LinkedList();
+
+        List<String> datos = new Arraylist<>();
+        datos.getIterator();
 
         datos.addAtTail("uno");
         datos.addAtTail("dos");
@@ -14,7 +17,7 @@ public class Main {
         datos.addAtFront("2");
         datos.addAtFront("1");
 
-        Iterator iterator = datos.getIterator();
+        Iterator<String> iterator = datos.getIterator();
 
         while (iterator.hasNext()){
             String data = iterator.next();

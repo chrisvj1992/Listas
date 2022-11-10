@@ -1,17 +1,18 @@
 package uaslp.objetos.list.arraylist;
 
+import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
 
-public class Arraylist implements List {
-    private String[] data;
+public class Arraylist<T >implements List<T> {
+    private T[] data;
     private int size;
 
     public Arraylist(){
-        data = new  String[2];
+        data = (T[])(new  Object[2]) ;
 
     }
 
-    public void addAtTail(String data){
+    public void addAtTail(T data){
         if(size == this.data.length){
             increaseArraySize();
         }
@@ -21,7 +22,7 @@ public class Arraylist implements List {
     }
 
     private void increaseArraySize(){
-        String []newArray = new String[this.data.length * 2];
+        T []newArray = (T[])(new Object[this.data.length * 2]);
 
         for (int i= 0; i< data.length; i++){
             newArray[i] = data[i];
@@ -30,7 +31,7 @@ public class Arraylist implements List {
         data = newArray;
     }
 
-    public void addAtFront(String data){
+    public void addAtFront(T data){
         if(size == this.data.length){
             increaseArraySize();
         }
@@ -64,7 +65,7 @@ public class Arraylist implements List {
         size = 0;
     }
 
-    public boolean setAt(int index,String data){
+    public boolean setAt(int index,T data){
         if (index < 0 || index >= size){
             return false;
         }
@@ -74,7 +75,7 @@ public class Arraylist implements List {
         return true;
     }
 
-    public String getAt(int index){
+    public T getAt(int index){
         if (index < 0 || index >= size){
             return null;
         }
@@ -82,8 +83,8 @@ public class Arraylist implements List {
         return this.data[index];
     }
 
-    public void removeAllWithValue(String value){
-        String []newArray = new String[data.length];
+    public void removeAllWithValue(T value){
+        T []newArray = (T[] )(new Object[data.length]);
         int count =0;
 
         for(int i=0; i< size; i++){
@@ -100,8 +101,21 @@ public class Arraylist implements List {
     }
 
 
-    public ArrayListIterator getIterator(){
-        return new ArrayListIterator(this);
-    }
+    public Iterator getIterator(){
+        return new Iterator() {
 
+            private int currentIndex = 0;
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size;
+            }
+
+            @Override
+            public T next() {
+                return data[currentIndex++];
+            }
+        };
+    }
 }
+
+
