@@ -113,13 +113,14 @@ public class LinkedList<T> implements List<T> {
                         head.previous = null;
                     }
                 }else{
-                    current.previous.next = current.next;
+                    current.previous.next = current.next; // se sobreescribe
                     if (current == tail){
                         tail = current.previous;
                     }else{
                         current.next.previous = current.previous;
                     }
                 }
+                size--;
             }
             current = current.next;
         }

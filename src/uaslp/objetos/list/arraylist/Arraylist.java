@@ -101,7 +101,7 @@ public class Arraylist<T >implements List<T> {
     }
 
 
-    public Iterator getIterator(){
+    public Iterator getIterator(){      //clase anonima
         return new Iterator() {
 
             private int currentIndex = 0;
